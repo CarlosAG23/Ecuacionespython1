@@ -5,4 +5,4 @@ c = float(input("Ingrese el valor de c: "))
 
 r = ((c + 5)*(b**2 - 3*a*c)*a**2)/(4 * a)
 
-print("El resultado de la ecuacion es: ", r)
+print("El resultado de l ecuacion es: ", r)
