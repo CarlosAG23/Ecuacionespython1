@@ -1,4 +1,4 @@
-﻿# Ecuaciones en Python
+﻿# Ejercicios con Python
 ## Ejemplo con ecuaciones en python
 ![img23](https://github.com/CarlosAG23/Ecuacionespython1/assets/67843396/db91e7fb-2559-4f69-8d45-d1d0a6ea9d5d)
 ## ﻿Salida en pantalla
