@@ -8,7 +8,7 @@ import emoji
 telegram_token = 'TU_TOKEN_DE_TELEGRAM'
 weather_api_key = 'TU_API_KEY_DE_OPENWEATHERMAP'
 city_name = 'Quito'
-chat_id = '348562795'
+chat_id = 'your_id'
 target_hour = 21
 target_minute = 31  # Cambia a 10 para 20:10
 
@@ -90,3 +90,5 @@ async def main():
             # Espera hasta el próximo sábado
             print(f"Hoy no es sábado. Esperando {seconds_to_wait} segundos hasta el próximo sábado...")
             await asyncio.sleep(seconds_to_wait)
+if __name__ == "__main__":
+    asyncio.run(main())
