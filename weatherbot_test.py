@@ -41,3 +41,52 @@ def get_weather_emoji(weather_description):
         return emoji.emojize(':cloud:')
     else:
         return ''
+
+# Función para enviar mensaje a Telegram
+async def send_telegram_message(message):
+    bot = Bot(token=telegram_token)
+    await bot.send_message(chat_id=chat_id, text=message)
+
+# Función principal
+async def main():
+    while True:
+        now = datetime.now()
+
+        # Verifica si hoy es sábado (día de la semana 5 en la convención ISO)
+        if now.weekday() == 5:
+            target_time = datetime(now.year, now.month, now.day, target_hour, target_minute, 0)
+
+            # Si la hora actual es igual o después de la hora deseada
+            if now >= target_time:
+                target_time += timedelta(days=7)
+
+            time_to_wait = target_time - now
+            seconds_to_wait = time_to_wait.total_seconds()
+
+            # Espera hasta la hora deseada
+            if seconds_to_wait > 0:
+                print(f"Esperando {seconds_to_wait} segundos hasta las {target_hour}:{target_minute}...")
+                await asyncio.sleep(seconds_to_wait)
+
+            # Obtiene el pronóstico del tiempo
+            weather_info = get_weather()
+
+            # Envia el mensaje a Telegram
+            await send_telegram_message(weather_info)
+
+            # Calcula el tiempo hasta la próxima hora deseada
+            next_target_time = target_time + timedelta(hours=1)
+            time_to_wait_next_hour = next_target_time - datetime.now()
+            seconds_to_wait_next_hour = max(time_to_wait_next_hour.total_seconds(), 0)
+
+            # Espera hasta la próxima hora deseada
+            await asyncio.sleep(seconds_to_wait_next_hour)
+        else:
+            # Si no es sábado, espera hasta el próximo sábado
+            next_saturday = now + timedelta(days=(5 - now.weekday() + 7) % 7)
+            time_to_wait = next_saturday - now
+            seconds_to_wait = time_to_wait.total_seconds()
+
+            # Espera hasta el próximo sábado
+            print(f"Hoy no es sábado. Esperando {seconds_to_wait} segundos hasta el próximo sábado...")
+            await asyncio.sleep(seconds_to_wait)
