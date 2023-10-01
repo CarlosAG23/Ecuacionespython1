@@ -7,7 +7,7 @@ import emoji
 # Configuración
 telegram_token = 'TU_TOKEN_DE_TELEGRAM'
 weather_api_key = 'TU_API_KEY_DE_OPENWEATHERMAP'
-city_name = 'Quito'
+city_name = 'your_city'
 chat_id = 'your_id'
 target_hour = 21
 target_minute = 31  # Cambia a 10 para 20:10
