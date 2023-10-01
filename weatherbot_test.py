@@ -30,3 +30,14 @@ def get_weather():
                f"{weather_emoji} Estado del tiempo: {weather_description}"
     else:
         return f"Error al obtener el pronóstico: {response.json()['message']}"
+
+# Función para obtener un emoji basado en la descripción del clima
+def get_weather_emoji(weather_description):
+    if 'lluvia' in weather_description.lower():
+        return emoji.emojize(':umbrella_with_rain_drops:')
+    elif 'sol' in weather_description.lower():
+        return emoji.emojize(':sunny:')
+    elif 'nube' in weather_description.lower():
+        return emoji.emojize(':cloud:')
+    else:
+        return ''
